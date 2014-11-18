@@ -1,0 +1,31 @@
+1.首先介绍loggers标签，用于定义logger的lever和所采用的appender，其中appender-ref必须为先前定义的appenders的名称，例如，此处为Console。那么log就会以appender所定义的输出格式来输出log
+
+root标签为log的默认输出形式，如果一个类的log没有在loggers中明确指定其输出lever与格式，那么就会采用root中定义的格式
+解析：如上面的例子中，com.ericsson.lsp.service.sim中的所有类，都会按照console和FILE的appender来输出，而没有定义log的类，都按照root默认的来输出。
+2.再来介绍下Appenders标签，里面放各种扩展组件，主要类型有
+	 1.ConsoleAppender
+		输出结果到控制台
+	
+	 2.FileAppender
+		输出结果到指定文件
+	
+	 3.RollingFileAppender
+	   	同样输出结果到文件，区别是用一个buffer，因此速度会快点。
+	   	
+还有其他的 FlumeAppender，JDBCAppender 等等，但是我们最常用的就是前面三者了。
+介绍下RollingRandomessFile 的相关属性：
+ name：表示该appender的名称
+ fileName：表示输出的文件的路径
+ append：是否追加，true表示追加内容到所在的日志，false表示每次都覆盖
+filePattern：表示当日志到达指定的大小或者时间，产生新日志时，旧日志的命名路径。
+PatternLayout：和log4j1一样，指定输出日志的格式，具体代表的意思见前面的博客中
+Policies：策略，表示日志什么时候应该产生新日志，
+         可以有时间策略和大小策略等，上面使用的是时间策略，每隔24小时产生新的日志文件
+ThresholdFilter ：过滤器，log4j2中有很多的filter，但是没有仔细研究，需要的时候再看
+         上文中的ThresholdFilter filter 指定了输出的最低级别，如
+      将输出debug以及debug级别以上的，但是需求只需要输出debug级别的，所以加上下列filter
+ 但是，这样的效果是输出debug和info两个级别的日志，所以换下两个filter的顺序就好了。
+当然还有许多其他的配置，可以自己到官网查看
+http://logging.apache.org/log4j/2.x/manual/appenders.html
+other:
+http://blog.csdn.net/ithomer/article/details/8000466

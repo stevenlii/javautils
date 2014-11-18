@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 
 public class Test {
-	private static final Logger logger = LogManager.getLogger(getClazzName()); 
+	private static final Logger logger = LogManager.getLogger(); 
 public static void main(String[] args) {
 	String msg = new String("妹的!!!");
 	System.out.println(msg);
