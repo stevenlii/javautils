@@ -218,7 +218,7 @@ public class MailSend
     themail.setNamePass("lizhiqiang@umpay.com", "OOO000");
    
     themail.setTo("lizhiqiang@umpay.com;1098989547@qq.com");
-    themail.setBody(today+"测试maintest1<br>测试test2<br>测试test3");
+    themail.setBody(today+"测试maintest1<br>测试test2<br>测试test3from local");
     themail.addFileAffix(today+"交易统计.xls");
 
     themail.sendout();
