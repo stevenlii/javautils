@@ -19,6 +19,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+/**
+ * @ClassName: MailSend
+ * @Description: 发送邮件。
+ * @author StevenLii
+ * @date 2014年11月19日 下午10:11:10
+ * 在Maven里需要如下配置：
+ * <dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+ * 
+ */
 public class MailSend
 {
 	private static final Logger log = LogManager.getLogger("MailSend");
