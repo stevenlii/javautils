@@ -37,7 +37,7 @@ public class PhoneNum {
             call.addParameter(new QName(namespace, "mobileCode"),
                      XMLType.XSD_STRING, ParameterMode.IN); // 要返回的数据类型
             call.setReturnType(new QName(namespace, op), String.class); // 入参：对应theIpAddress
-             Object[] params = new Object[]{"18210988626"}; // 调用方法并传递参数
+             Object[] params = new Object[]{"15994133855"}; // 调用方法并传递参数
             String v = (String) call.invoke(params);
             System.out.println(v);
             return v;
