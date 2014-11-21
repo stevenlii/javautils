@@ -29,3 +29,6 @@ ThresholdFilter ：过滤器，log4j2中有很多的filter，但是没有仔细�
 http://logging.apache.org/log4j/2.x/manual/appenders.html
 other:
 http://blog.csdn.net/ithomer/article/details/8000466
+other:
+Log4j 2 API Messages - Apache Log4j 2
+http://logging.apache.org/log4j/2.x/manual/messages.html

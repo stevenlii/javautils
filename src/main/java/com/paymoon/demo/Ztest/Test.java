@@ -19,7 +19,7 @@ public static void main(String[] args) {
 	map1.putAll(map2);
 	
 	System.out.println(map1.get("1"));
-	logger.info(msg);
+	logger.info("11111111111111111"+msg);
 	logger.info(msg,new Test().getClazzName());
 	
 }
