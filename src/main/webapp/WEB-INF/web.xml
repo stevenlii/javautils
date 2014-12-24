@@ -34,6 +34,31 @@
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+ <servlet>
+        <servlet-name>SessionPhoneCity</servlet-name>
+        <servlet-class>com.paymoon.demo.web.SessionPhoneCity</servlet-class>
+    </servlet>
+      <servlet-mapping>
+        <servlet-name>SessionPhoneCity</servlet-name>
+        <url-pattern>/sp</url-pattern>
+    </servlet-mapping>
+ <servlet>
+        <servlet-name>SessionPhoneCityjsp</servlet-name>
+        <servlet-class>com.paymoon.demo.web.SessionPhoneCityJsp</servlet-class>
+    </servlet>
+      <servlet-mapping>
+        <servlet-name>SessionPhoneCityjsp</servlet-name>
+        <url-pattern>/spj</url-pattern>
+    </servlet-mapping>
+    
+ <servlet>
+        <servlet-name>SessionPhoneCitydown</servlet-name>
+        <servlet-class>com.paymoon.demo.web.SessionPhoneCityDown</servlet-class>
+    </servlet>
+      <servlet-mapping>
+        <servlet-name>SessionPhoneCitydown</servlet-name>
+        <url-pattern>/spdown</url-pattern>
+    </servlet-mapping>
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
