@@ -53,6 +53,7 @@ public class Spider {
 				
 				System.out.println(string);
 			}
+
 		}
 		bw.close();
 		br.close();
