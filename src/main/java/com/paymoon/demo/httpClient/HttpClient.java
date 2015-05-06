@@ -11,7 +11,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
@@ -23,7 +22,6 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContexts;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
@@ -35,12 +33,14 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
+import org.junit.Test;
 
 public class HttpClient {
 
-	
+//	@Test
+	public void jUnitTest() {
+		get();
+	}
 
 	/**
 	 * HttpClient连接SSL
@@ -48,12 +48,10 @@ public class HttpClient {
 	public void ssl() {
 		CloseableHttpClient httpclient = null;
 		try {
-			KeyStore trustStore = KeyStore.getInstance(KeyStore
-					.getDefaultType());
-			FileInputStream instream = new FileInputStream(new File(
-					"d:\\tomcat.keystore"));
+			KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+			FileInputStream instream = new FileInputStream(new File("d:\\tomcat.keystore"));
 			try {
-				// 加载keyStore d:\\tomcat.keystore
+				// 加载keyStore d:\\tomcat.keystore  
 				trustStore.load(instream, "123456".toCharArray());
 			} catch (CertificateException e) {
 				e.printStackTrace();
@@ -64,21 +62,13 @@ public class HttpClient {
 				}
 			}
 			// 相信自己的CA和所有自签名的证书
-			SSLContext sslcontext = SSLContexts
-					.custom()
-					.loadTrustMaterial(trustStore,
-							new TrustSelfSignedStrategy()).build();
+			SSLContext sslcontext = SSLContexts.custom().loadTrustMaterial(trustStore, new TrustSelfSignedStrategy()).build();
 			// 只允许使用TLSv1协议
-			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(
-					sslcontext,
-					new String[] { "TLSv1" },
-					null,
+			SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslcontext, new String[] { "TLSv1" }, null,
 					SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
-			httpclient = HttpClients.custom().setSSLSocketFactory(sslsf)
-					.build();
+			httpclient = HttpClients.custom().setSSLSocketFactory(sslsf).build();
 			// 创建http请求(get方式)
-			HttpGet httpget = new HttpGet(
-					"https://localhost:8443/myDemo/Ajax/serivceJ.action");
+			HttpGet httpget = new HttpGet("https://localhost:8443/myDemo/Ajax/serivceJ.action");
 			System.out.println("executing request" + httpget.getRequestLine());
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
@@ -86,8 +76,7 @@ public class HttpClient {
 				System.out.println("----------------------------------------");
 				System.out.println(response.getStatusLine());
 				if (entity != null) {
-					System.out.println("Response content length: "
-							+ entity.getContentLength());
+					System.out.println("Response content length: " + entity.getContentLength());
 					System.out.println(EntityUtils.toString(entity));
 					EntityUtils.consume(entity);
 				}
@@ -119,16 +108,13 @@ public class HttpClient {
 	 * post方式提交表单（模拟用户登录请求）
 	 */
 	public void postForm() {
-		// 创建默认的httpClient实例.
+		// 创建默认的httpClient实例.  
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-		// 创建httppost
-		// "http://api.110monitor.com/ucid/api/authorize?user=helloworld&password=helloworld"
+		// 创建httppost  	"http://api.110monitor.com/ucid/api/authorize?user=helloworld&password=helloworld"
 
-		// HttpPost httppost = new
-		// HttpPost("http://118.85.194.45:8080/ucid/api/authorize?user=helloworld&password=helloworld");
-		HttpPost httppost = new HttpPost(
-				"http://118.85.194.45:8080/ucid/api/authorize");
-		// 创建参数队列
+//		HttpPost httppost = new HttpPost("http://118.85.194.45:8080/ucid/api/authorize?user=helloworld&password=helloworld");
+		HttpPost httppost = new HttpPost("http://118.85.194.45:8080/ucid/api/authorize");
+		// 创建参数队列  
 		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 		formparams.add(new BasicNameValuePair("user", "monitor"));
 		formparams.add(new BasicNameValuePair("password", "123456"));
@@ -141,12 +127,9 @@ public class HttpClient {
 			try {
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					System.out
-							.println("--------------------------------------");
-					System.out.println("Response content: "
-							+ EntityUtils.toString(entity, "UTF-8"));
-					System.out
-							.println("--------------------------------------");
+					System.out.println("--------------------------------------");
+					System.out.println("Response content: " + EntityUtils.toString(entity, "UTF-8"));
+					System.out.println("--------------------------------------");
 				}
 			} finally {
 				response.close();
@@ -158,7 +141,7 @@ public class HttpClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// 关闭连接,释放资源
+			// 关闭连接,释放资源  
 			try {
 				httpclient.close();
 			} catch (IOException e) {
@@ -171,12 +154,11 @@ public class HttpClient {
 	 * 发送 post请求访问本地应用并根据传递参数不同返回不同结果
 	 */
 	public void post() {
-		// 创建默认的httpClient实例.
+		// 创建默认的httpClient实例.  
 		CloseableHttpClient httpclient = HttpClients.createDefault();
-		// 创建httppost
-		HttpPost httppost = new HttpPost(
-				"http://localhost:8080/myDemo/Ajax/serivceJ.action");
-		// 创建参数队列
+		// 创建httppost  
+		HttpPost httppost = new HttpPost("http://localhost:8080/myDemo/Ajax/serivceJ.action");
+		// 创建参数队列  
 		List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 		formparams.add(new BasicNameValuePair("type", "house"));
 		UrlEncodedFormEntity uefEntity;
@@ -188,12 +170,9 @@ public class HttpClient {
 			try {
 				HttpEntity entity = response.getEntity();
 				if (entity != null) {
-					System.out
-							.println("--------------------------------------");
-					System.out.println("Response content: "
-							+ EntityUtils.toString(entity, "UTF-8"));
-					System.out
-							.println("--------------------------------------");
+					System.out.println("--------------------------------------");
+					System.out.println("Response content: " + EntityUtils.toString(entity, "UTF-8"));
+					System.out.println("--------------------------------------");
 				}
 			} finally {
 				response.close();
@@ -205,7 +184,7 @@ public class HttpClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// 关闭连接,释放资源
+			// 关闭连接,释放资源  
 			try {
 				httpclient.close();
 			} catch (IOException e) {
@@ -217,33 +196,25 @@ public class HttpClient {
 	/**
 	 * 发送 get请求
 	 */
-	public void get(Map<String,String> map) {
+	public void get() {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
-			// 创建httpget.
-			HttpGet httpget = new HttpGet("http://www.baidu.com");// GitHub
+			// 创建httpget.  
+			HttpGet httpget = new HttpGet("http://www.baidu.com/");
 			System.out.println("executing request " + httpget.getURI());
-			// 执行get请求.
+			// 执行get请求.  
 			CloseableHttpResponse response = httpclient.execute(httpget);
 			try {
-				// 获取响应实体
+				// 获取响应实体  
 				HttpEntity entity = response.getEntity();
 				System.out.println("--------------------------------------");
-				// 打印响应状态
+				// 打印响应状态  
 				System.out.println(response.getStatusLine());
 				if (entity != null) {
-					// 打印响应内容长度
-					System.out.println("Response content length: "
-							+ entity.getContentLength());
-					// 打印响应内容
-
-					System.out
-							.println(response.getStatusLine().getStatusCode());
-//					System.out.println("Response content: "
-//							+ EntityUtils.toString(entity));
-					Document doc = Jsoup.parse(EntityUtils.toString(entity));//分析文档，使用doc.toString()可以转为文本  
-					String body=doc.title();//获取body片段，使用body.toString()可以转为文本 
-					System.out.println(body);
+					// 打印响应内容长度  
+					System.out.println("Response content length: " + entity.getContentLength());
+					// 打印响应内容  
+					System.out.println("Response content: " + EntityUtils.toString(entity));
 				}
 				System.out.println("------------------------------------");
 			} finally {
@@ -251,14 +222,12 @@ public class HttpClient {
 			}
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
-		} catch (HttpHostConnectException e) {
-			System.out.println("443 refused" + e.getMessage());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			// 关闭连接,释放资源
+			// 关闭连接,释放资源  
 			try {
 				httpclient.close();
 			} catch (IOException e) {
@@ -273,28 +242,23 @@ public class HttpClient {
 	public void upload() {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
-			HttpPost httppost = new HttpPost(
-					"http://localhost:8080/myDemo/Ajax/serivceFile.action");
+			HttpPost httppost = new HttpPost("http://localhost:8080/myDemo/Ajax/serivceFile.action");
 
 			FileBody bin = new FileBody(new File("F:\\image\\sendpix0.jpg"));
-			StringBody comment = new StringBody("A binary file of some kind",
-					ContentType.TEXT_PLAIN);
+			StringBody comment = new StringBody("A binary file of some kind", ContentType.TEXT_PLAIN);
 
-			HttpEntity reqEntity = MultipartEntityBuilder.create()
-					.addPart("bin", bin).addPart("comment", comment).build();
+			HttpEntity reqEntity = MultipartEntityBuilder.create().addPart("bin", bin).addPart("comment", comment).build();
 
 			httppost.setEntity(reqEntity);
 
-			System.out
-					.println("executing request " + httppost.getRequestLine());
+			System.out.println("executing request " + httppost.getRequestLine());
 			CloseableHttpResponse response = httpclient.execute(httppost);
 			try {
 				System.out.println("----------------------------------------");
 				System.out.println(response.getStatusLine());
 				HttpEntity resEntity = response.getEntity();
 				if (resEntity != null) {
-					System.out.println("Response content length: "
-							+ resEntity.getContentLength());
+					System.out.println("Response content length: " + resEntity.getContentLength());
 				}
 				EntityUtils.consume(resEntity);
 			} finally {
@@ -313,4 +277,4 @@ public class HttpClient {
 		}
 	}
 }
-// </namevaluepair></namevaluepair></namevaluepair></namevaluepair>
+//</namevaluepair></namevaluepair></namevaluepair></namevaluepair>

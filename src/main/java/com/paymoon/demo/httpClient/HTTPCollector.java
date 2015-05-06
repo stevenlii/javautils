@@ -9,6 +9,7 @@ public class HTTPCollector {
 		HttpClient httpClient = new HttpClient();
 		String respTitleString = "百度一下，你就知道";
 		map.put("respTitleString", respTitleString);
-		httpClient.get(map);
+		// httpClient.get(map);
+
 	}
 }
