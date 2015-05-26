@@ -37,7 +37,7 @@ import org.junit.Test;
 
 public class HttpClient {
 
-//	@Test
+	@Test
 	public void jUnitTest() {
 		get();
 	}

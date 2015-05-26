@@ -6,15 +6,16 @@ import redis.clients.jedis.Jedis;
  * @author yol
  *
  */
-public class MyJedis {
+public class MyJedis3 {
 	public static void main(String[] args) {
 		//just ip without port:6379
-		Jedis jedis = new Jedis("101.227.255.236",6379);
-		jedis.set("foo", "bar");
-		String value = jedis.get("foo");
+		Jedis redis = new Jedis("101.227.255.236",6379);
+		redis.set("foo", "bar");
+		redis.setex("content", 5, "hello");
+		String value = redis.get("foo");
 		System.out.println(value);
-		jedis.set("foo", "foo");
-		value = jedis.get("foo");		
+		redis.set("foo", "foo");
+		value = redis.get("foo");		
 		System.out.println(value);
 	}
 }
