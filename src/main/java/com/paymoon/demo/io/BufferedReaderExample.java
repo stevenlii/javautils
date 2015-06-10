@@ -8,7 +8,7 @@ public class BufferedReaderExample {
  
 	public static void main(String[] args) {
  
-		try (BufferedReader br = new BufferedReader(new FileReader("/Users/yol/workspace/agent-alert/target/classes/conf/iplist")))
+		try (BufferedReader br = new BufferedReader(new FileReader("/Users/yol/workspace/agent-alert/pinghostlist.txt")))
 		{
  
 			String sCurrentLine;

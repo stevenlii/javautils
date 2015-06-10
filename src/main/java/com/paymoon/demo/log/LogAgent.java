@@ -8,9 +8,11 @@
  */
 package com.paymoon.demo.log;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.paymoon.demo.Util.PropConf;
+import com.paymoon.demo.io.ReadOtherFileFromResource;
 
 /**
  * @ClassName: UtilLog
@@ -22,7 +24,7 @@ import com.paymoon.demo.Util.PropConf;
  */
 public class LogAgent<T> {
 
-	private static Logger logger = Logger.getLogger("common");
+	private static Logger logger = LogManager.getLogger("common");
 
 	public static void info(Logger logger, String message, Object... args) {
 

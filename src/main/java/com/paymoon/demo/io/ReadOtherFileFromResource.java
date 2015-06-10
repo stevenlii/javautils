@@ -1,7 +1,6 @@
 package com.paymoon.demo.io;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,13 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.paymoon.demo.Util.PropConf;
 
 
 public class ReadOtherFileFromResource {
-	private static transient Logger logger = Logger.getLogger ( ReadOtherFileFromResource.class);
+	private static Logger logger = LogManager.getLogger(ReadOtherFileFromResource.class);
 
 	public static String readIpString(String pathname,
 			String prePath) {
