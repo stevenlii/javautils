@@ -49,10 +49,10 @@ public class Spider {
 				socket.getInputStream()));
 		String string = null;
 		while ((string = br.readLine()) != null) {
-			if (string.startsWith("HTTP/1.1")) {
+//			if (string.startsWith("HTTP/1.1")) {
 				
 				System.out.println(string);
-			}
+//			}
 
 		}
 		bw.close();
