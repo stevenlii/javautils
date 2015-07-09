@@ -22,17 +22,42 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  * 
  */
 public class FastJasonDemo{
+	/**
+	 * 
+	 * @Title: seri2json
+	 * @Description: 
+	 * @return  
+	 * @return String
+	 */
 	public String  seri2json() {
+		System.out.println("把对象变为fastjason字符串");
 		Person person = new Person("steven", "25", "mail", "175", "LYU");
 		String jsonString = JSON.toJSONString(person);
 		return jsonString;
 
 	}
+	/**
+	 * 
+	 * @Title: unSeri2json
+	 * @Description: 把fastjason字符串变为对象
+	 * @param jsonString
+	 * @return  
+	 * @return Person
+	 */
 	public Person  unSeri2json(String jsonString) {
+		System.out.println("把fastjason字符串变为对象");
 		Person vo = JSON.parseObject(jsonString, Person.class);
 		return vo;
 	}
+	/**
+	 * 
+	 * @Title: seri2xml
+	 * @Description: 把对象变为xml 
+	 * @return  
+	 * @return String
+	 */
 	public String  seri2xml() {
+		System.out.println("把对象变为xml");
 		Person person = new Person("steven", "25", "mail", "175", "LYU");
 		XStream xStream = new XStream(new DomDriver());
 		xStream.alias("person", Person.class);
@@ -41,7 +66,16 @@ public class FastJasonDemo{
 		return xmlString;
 		
 	}
+	/**
+	 * 
+	 * @Title: unSeri2xml
+	 * @Description: 把xml变为 对象
+	 * @param xmlString
+	 * @return  
+	 * @return Person
+	 */
 	public Person  unSeri2xml(String xmlString) {
+		System.out.println("把xml变为 对象");
 		XStream xStream = new XStream();
 		//这句话得有
 		xStream.alias("person", Person.class);
@@ -53,17 +87,14 @@ public class FastJasonDemo{
 	public static void main(String[] args) {
 		FastJasonDemo fastJasonDemo = new FastJasonDemo();
 		String jsonString = fastJasonDemo.seri2json();
-		System.out.println("seri resutl");
+		
 		System.out.println(jsonString);
 		Person voPerson = fastJasonDemo.unSeri2json(jsonString);
-		System.out.println("unseri result");
 		System.out.println(voPerson.toString());
 		System.err.println("------------------------");
 		String xmlString = fastJasonDemo.seri2xml();
-		System.out.println("seri resutl");
 		System.out.println(xmlString);
 		Person voPersonxml = fastJasonDemo.unSeri2xml(xmlString);
-		System.out.println("unseri result");
 		System.out.println(voPersonxml.toString());
 		
 	}
