@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import org.apache.http.protocol.HTTP;
 public class Spider2 {
     public static void main(String args[]){    
         URL url;
@@ -11,7 +13,7 @@ public class Spider2 {
         BufferedReader reader;
         String line;
         try{
-            //生成一个URL对象，要获取源代码的网页地址为：http://www.sina.com.cn
+            //生成一个URL对象，要获取源代码的网页地址为：http://www.xxx.com
             url=new URL("http://www.paymoon.com");
             //打开URL
             urlConnection = (HttpURLConnection)url.openConnection();
