@@ -67,6 +67,11 @@ public class SendJson2HubSpot {
 			metric.setValue(p2.getPhone());
 			data.add(metric);
 			
+			metric = new Metric();
+			metric.setProperty("sourcecode");
+			metric.setValue("ce");
+			data.add(metric);
+			
 			Map<String,Object> map = new HashMap<>();
 			map.put("properties", data);
 //			map.put("hapikey", "6cd96aa5-871f-485e-b06f-65d8d1ce9f80");
