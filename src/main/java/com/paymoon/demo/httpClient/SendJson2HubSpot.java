@@ -20,7 +20,7 @@ import com.paymoon.demo.vo.Person2;
  * @date 2014年11月19日 下午11:01:24
  * 
  */
-public class HelloWorld2 {
+public class SendJson2HubSpot {
 
 	/**
 	 * @Fields serialVersionUID : TODO
