@@ -1,7 +1,7 @@
 package com.paymoon.demo.mongo;
 
-import java.net.UnknownHostException;
 import java.util.Date;
+
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -16,12 +16,17 @@ import com.mongodb.MongoException;
 public class HelloWorld {
   public static void main(String[] args) {
 
-    try {
+    mgrun();
+
+  }
+
+private static void mgrun() {
+	try {
 
 	/**** Connect to MongoDB ****/
 	// Since 2.10.0, uses MongoClient
-//	MongoClient mongo = new MongoClient("ip");
-	MongoClient mongo = new MongoClient("");
+//	MongoClient mongo = new MongoClient("123.57.39.109");
+	MongoClient mongo = new MongoClient("ci3.test.110monitor.com");
 
 	/**** Get database ****/
 	// if database doesn't exists, MongoDB will create it for you
@@ -33,15 +38,17 @@ public class HelloWorld {
 
 	/**** Insert ****/
 	// create a document to store key and value
-	BasicDBObject document = new BasicDBObject();
-	document.put("name", "mkyong");
-	document.put("age", 30);
-	document.put("createdDate", new Date());
-	table.insert(document);
+	
+	
+//	BasicDBObject document = new BasicDBObject();
+//	document.put("name", "mkyong");
+//	document.put("age1", 30);
+//	document.put("createdDate2", new Date());
+//	table.insert(document);
 
 	/**** Find and display ****/
 	BasicDBObject searchQuery = new BasicDBObject();
-	searchQuery.put("name", "mkyong");
+//	searchQuery.put("name", "mkyong");
 
 	DBCursor cursor = table.find(searchQuery);
 
@@ -51,18 +58,20 @@ public class HelloWorld {
 
 	/**** Update ****/
 	// search document where name="mkyong" and update it with new values
-	BasicDBObject query = new BasicDBObject();
-	query.put("name", "mkyong");
+	
+//	BasicDBObject query = new BasicDBObject();
+//	query.put("name", "mkyong");
+//
+//	BasicDBObject newDocument = new BasicDBObject();
+//	newDocument.put("name", "mkyong-updated");
+//
+//	BasicDBObject updateObj = new BasicDBObject();
+//	updateObj.put("$set", newDocument);
+//	
+//
+//	table.update(query, updateObj);
 
-	BasicDBObject newDocument = new BasicDBObject();
-	newDocument.put("name", "mkyong-updated");
-
-	BasicDBObject updateObj = new BasicDBObject();
-	updateObj.put("$set", newDocument);
-
-	table.update(query, updateObj);
-
-	/**** Find and display ****/
+	/**** ???Find and display ****/
 	BasicDBObject searchQuery2 
 	    = new BasicDBObject().append("name", "mkyong-updated");
 
@@ -74,10 +83,9 @@ public class HelloWorld {
 
 	/**** Done ****/
 	System.out.println("Done");
-
+	System.exit(0);
     } catch (MongoException e) {
 	e.printStackTrace();
     }
-
-  }
+}
 }

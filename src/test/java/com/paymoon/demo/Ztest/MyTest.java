@@ -6,10 +6,11 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 public class MyTest extends TestCase {
-	@org.junit.Test	
-	public void test2() {
-		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(map.get("1"));
-		System.out.println(map.get("2"));
+	public static void test2() {}
+	public static void main(String[] args) {
+		String endpoint = "http://1412580518114250.mns.cn-beijing.aliyuncs.com/queues/myfirstqueue";
+		String[] endpointArr = endpoint.split("/");
+		System.out.println(endpointArr[0]+"//"+endpointArr[2]);
+			System.out.println(endpointArr[endpointArr.length - 1]);
 	}
 }

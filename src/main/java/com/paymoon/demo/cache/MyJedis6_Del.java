@@ -8,7 +8,7 @@ import redis.clients.jedis.Jedis;
  * @author yol
  *
  */
-public class MyJedis3 {
+public class MyJedis6_Del {
 	public static void main(String[] args) {
 		admintoken2redis();
 	}
@@ -16,17 +16,18 @@ public class MyJedis3 {
 		String host=MyProp.getVariable("redis.host");
 		String portString = MyProp.getVariable("redis.port");
 		String password=MyProp.getVariable("redis.password");
+		//OL
+		host="114.215.80.226";
 		Jedis redis = new Jedis(host,Integer.valueOf(portString));
 		redis.auth(password);
-		redis.set("foo", "bar");
-		redis.setex("content", 5, "hello");
-		String value = redis.get("foo");
+		String key="redis_user_token_key_";
+		
+		String token="5caee75a-d9ad-4f94-a16b-7dfb7afcddf1";
+		key +=token;
+		String value = redis.get(key);
 		System.out.println(value);
-		redis.set("foo", "foo");
-		value = redis.get("foo");		
-		System.out.println(value);
-		redis.del("foo");
-		value = redis.get("foo");		
+		redis.del(key);
+		value = redis.get(key);		
 		System.out.println(value);
 		redis.close();
 		return true;

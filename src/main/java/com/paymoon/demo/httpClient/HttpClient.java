@@ -36,6 +36,9 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
 public class HttpClient {
+	public static void main(String[] args) {
+		get();
+	}
 
 	@Test
 	public void jUnitTest() {
@@ -196,11 +199,12 @@ public class HttpClient {
 	/**
 	 * 发送 get请求
 	 */
-	public void get() {
+	public static void get() {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		try {
 			// 创建httpget.  
-			HttpGet httpget = new HttpGet("http://www.baidu.com/");
+//			HttpGet httpget = new HttpGet("http://www.baidu.com/");
+			HttpGet httpget = new HttpGet("http://user.oneapm.com/account/sessionId.do?username=shlroe@163.com&password=qwe123_");
 			System.out.println("executing request " + httpget.getURI());
 			// 执行get请求.  
 			CloseableHttpResponse response = httpclient.execute(httpget);

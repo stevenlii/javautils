@@ -1,11 +1,11 @@
-package com.paymoon.demo.Util;
+package com.paymoon.demo.io2;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import org.junit.experimental.theories.Theories;
 
 /**
  * ****************** 类说明 ********************* 
@@ -68,7 +68,32 @@ public class Rpid {
 		rpid += getRandData(num);
 		return rpid;
 	}
-
+	/**
+	 * generate str with MD5 
+	 * @param args
+	 * @return
+	 */
+	public static String generateWithMD5(String args) {
+		if (args == null) {
+			System.err.println("String to MD5 digest should be first and only parameter");
+			return args;
+		}
+		String original = args;
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			md.update(original.getBytes());
+			byte[] digest = md.digest();
+			StringBuffer sb = new StringBuffer();
+			for (byte b : digest) {
+				sb.append(String.format("%02x", b & 0xff));
+			}
+			return sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println(e.getMessage());
+		}
+		return original;
+	}
 	/**
 	 * @Title: prefix
 	 * @Description: 前缀为U 占一位
