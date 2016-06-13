@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+   <Appenders>
+      <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d [%t] %-5p [%c] - %m%n"/>
+      </Console>
+           
+     <RollingRandomAccessFile name="DebugAppender" fileName="./logs/lsp_admin_debug.log" append="true" filePattern="./logs/lsp_admin_debug.log.%d{yyyyMMdd}">
+      <PatternLayout>
+        <Pattern>%d %-5p [%c] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="24" modulate="true"/>
+      </Policies>    
+      <ThresholdFilter level="INFO"  onMatch="DENY"  onMismatch="ACCEPT"/>
+      <ThresholdFilter level="DEBUG" onMatch="ACCEPT"  onMismatch="DENY"/>
+    </RollingRandomAccessFile>
+            
+   <RollingRandomAccessFile  name="FILE" fileName="/opt/lspv2/lsp_app/logs/lsp_app.log" append="true" filePattern="/opt/lspv2/lsp_app/logs/lsp_app.log.%d{yyyyMMdd}">
+      <PatternLayout>
+        <Pattern>%d %-5p [%c] %m%n</Pattern>
+      </PatternLayout>
+      <Policies>
+        <TimeBasedTriggeringPolicy  interval="24"  modulate="true"/>
+      </Policies>
+    </RollingRandomAccessFile >
+         
+    </Appenders>
+    <Loggers>
+         
+    <logger name="com.ericsson.lsp.service.sim" level="INFO" additivity="false">    
+        <appender-ref ref="Console" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="Event.error" />
+    </logger>
+         
+  <root level="Info">
+        <appender-ref ref="Console" />
+        <appender-ref ref="DebugAppender" />
+    </root>
+    </Loggers>
+         
+</Configuration>
