@@ -3,11 +3,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
  
-public class Main3 {
-    public Main3() throws Exception{
+public class ConsumerMain {
+    public ConsumerMain() throws Exception{
          
     	TopicConsumer consumer = new TopicConsumer();
-    	consumer.init("operate.task.task_0_invite", "operate.user.new.queue");
+    	consumer.init("alert.trigger.notification.qq.b", "alert.trigger.notification.qq.b.send");
     	Thread consumerThread  = new Thread(consumer);
     	consumerThread.start();
     }
@@ -18,6 +18,6 @@ public class Main3 {
      * @throws IOException
      */
     public static void main(String[] args) throws Exception{
-      new Main3();
+      new ConsumerMain();
     }
 }

@@ -20,15 +20,30 @@ public class MyJedis6_Del {
 		host="114.215.80.226";
 		Jedis redis = new Jedis(host,Integer.valueOf(portString));
 		redis.auth(password);
-		String key="redis_user_token_key_";
+		String email="gengwan@novel-supertv.com";
 		
-		String token="5caee75a-d9ad-4f94-a16b-7dfb7afcddf1";
-		key +=token;
-		String value = redis.get(key);
-		System.out.println(value);
-		redis.del(key);
-		value = redis.get(key);		
-		System.out.println(value);
+		String token=redis.get(Dict.REDIS_FIND_TOKENBYEMAIL_KEY_+email);
+		String user=redis.get(Dict.REDIS_FIND_USERBYEMAIL_KEY_+email);
+		System.out.println();
+		System.out.println(redis.get(Dict.REDIS_USER_KEY+user));
+		System.out.println(redis.get(Dict.REDIS_FIND_TOKENBYEMAIL_KEY_+email));
+		System.out.println(redis.get(Dict.REDIS_FIND_TOKENBYUSER_KEY_+user));
+		System.out.println(redis.get(Dict.REDIS_FIND_USERBYEMAIL_KEY_+email));
+		System.out.println(redis.get(Dict.REDIS_FIND_USERBYTOKEN_KEY_+token));
+		System.out.println(redis.get(Dict.REDIS_USER_TOKEN_KEY+token));
+		System.out.println(redis.get(Dict.REDIS_USER_TOKEN_SERIALIZE_KEY+token));
+		System.out.println(redis.get(token));
+		
+		System.out.println("del-----------");
+		redis.del(Dict.REDIS_USER_KEY+user);
+		redis.del(Dict.REDIS_FIND_TOKENBYEMAIL_KEY_+email);
+		redis.del(Dict.REDIS_FIND_TOKENBYUSER_KEY_+user);
+		redis.del(Dict.REDIS_FIND_USERBYEMAIL_KEY_+email);
+		redis.del(Dict.REDIS_FIND_USERBYTOKEN_KEY_+token);
+		redis.del(Dict.REDIS_USER_TOKEN_KEY+token);
+		redis.del(Dict.REDIS_USER_TOKEN_SERIALIZE_KEY+token);
+		redis.del(token);
+		
 		redis.close();
 		return true;
 	}

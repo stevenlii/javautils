@@ -3,7 +3,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.experimental.theories.Theories;
+
 import com.paymoon.demo.Util.MyProp;
+import com.thoughtworks.xstream.core.util.Pool;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -12,7 +15,7 @@ import redis.clients.jedis.BinaryClient.LIST_POSITION;
 
 /**
  * <p>redis通用工具类</p>
- * @author bigSea
+ * @author Stevenlii@qq.com
  *
  */
 public class RedisUtil {
@@ -23,11 +26,12 @@ public class RedisUtil {
 	} 
   
 	private RedisUtil() {
-		
+		super();
 	}
-	   public static final RedisUtil getInstance() {
-	      return RedisUtilHolder.redisUtilInstance;
-	   }
+
+	public static final RedisUtil getInstance() {
+		return RedisUtilHolder.redisUtilInstance;
+	}
 	
   private JedisPool pool = null;
   /**
@@ -98,20 +102,11 @@ public class RedisUtil {
    * @return 成功返回value 失败返回null
    */
   public String get(String key){
-    Jedis jedis = null;
-    String value = null;
-    try {
-      jedis = pool.getResource();
-      value = jedis.get(key);
-    } catch (Exception e) {
-    	if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return value;
+	  String getResutl = null;
+    try (Jedis jedis = pool.getResource()){
+    	 getResutl = jedis.get(key);
+    	 return getResutl;
+    } 
   }
   
   /**
@@ -122,19 +117,10 @@ public class RedisUtil {
    * @return 成功 返回OK 失败返回 0
    */
   public String set(String key,String value){
-    Jedis jedis = null;
-    try {
-      jedis = pool.getResource();
-      return jedis.set(key, value);
-    } catch (Exception e) {
-    	if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return "0";
-    } finally {
-      destroyResource(pool, jedis);
-    }
+    try (Jedis jedis = pool.getResource()){
+    	String setResult = jedis.set(key, value);
+    	return setResult;
+    } 
   }
   
   
@@ -144,18 +130,8 @@ public class RedisUtil {
    * @return 返回删除成功的个数 
    */
   public Long del(String...keys){
-    Jedis jedis = null;
-    try {
-      jedis = pool.getResource();
-      return jedis.del(keys);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return 0L;
-    } finally {
-      destroyResource(pool, jedis);
+    try (Jedis jedis = pool.getResource()){
+      		return jedis.del(keys);
     }
   }
   
@@ -166,21 +142,11 @@ public class RedisUtil {
    * @return 成功返回 添加后value的长度 失败 返回 添加的 value 的长度  异常返回0L
    */
   public Long append(String key ,String str){
-    Jedis jedis = null;
     Long res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.append(key, str);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return 0L;
-    } finally {
-      destroyResource(pool, jedis);
+      return res;
     }
-    return res;
   }
   
   /**
@@ -189,19 +155,9 @@ public class RedisUtil {
    * @return true OR false
    */
   public Boolean exists(String key){
-    Jedis jedis = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       return jedis.exists(key);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return false;
-    } finally {
-      destroyResource(pool, jedis);
-    }
+    } 
   }
   
   /**
@@ -211,19 +167,9 @@ public class RedisUtil {
    * @return 成功返回1 如果存在 和 发生异常 返回 0
    */
   public Long setnx(String key ,String value){
-    Jedis jedis = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       return jedis.setnx(key, value);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return 0L;
-    } finally {
-      destroyResource(pool, jedis);
-    }
+    } 
   }
   
   /**
@@ -234,20 +180,11 @@ public class RedisUtil {
    * @return 成功返回OK 失败和异常返回null
    */
   public String setex(String key,String value,int seconds){
-    Jedis jedis = null;
     String res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.setex(key, seconds, value);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   
@@ -266,19 +203,9 @@ public class RedisUtil {
    * @return 返回替换后  value 的长度
    */
   public Long setrange(String key,String str,int offset){
-    Jedis jedis = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       return jedis.setrange(key, offset, str);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-      return 0L;
-    } finally {
-      destroyResource(pool, jedis);
-    }
+    } 
   }
   
   
@@ -289,20 +216,11 @@ public class RedisUtil {
    * @return 成功返回value的集合, 失败返回null的集合 ,异常返回空
    */
   public List<String> mget(String...keys){
-    Jedis jedis = null;
     List<String> values = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       values = jedis.mget(keys);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return values;
+      return values;
+    } 
   }
   
   /**
@@ -314,20 +232,11 @@ public class RedisUtil {
    * 
    */
   public String mset(String...keysvalues){
-    Jedis jedis = null;
     String res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.mset(keysvalues);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -338,20 +247,11 @@ public class RedisUtil {
    * @return 成功返回1 失败返回0 
    */
   public Long msetnx(String...keysvalues){
-    Jedis jedis = null;
     Long res = 0L;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res =jedis.msetnx(keysvalues);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -361,20 +261,11 @@ public class RedisUtil {
    * @return 旧值 如果key不存在 则返回null
    */
   public String getset(String key,String value){
-    Jedis jedis = null;
     String res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.getSet(key, value);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -385,20 +276,11 @@ public class RedisUtil {
    * @return 如果没有返回null 
    */
   public String getrange(String key, int startOffset ,int endOffset){
-    Jedis jedis = null;
     String res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.getrange(key, startOffset, endOffset);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -407,20 +289,11 @@ public class RedisUtil {
    * @return 加值后的结果
    */
   public Long incr(String key){
-    Jedis jedis = null;
     Long res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.incr(key);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -430,20 +303,11 @@ public class RedisUtil {
    * @return
    */
   public Long incrBy(String key,Long integer){
-    Jedis jedis = null;
     Long res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.incrBy(key, integer);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -452,20 +316,11 @@ public class RedisUtil {
    * @return
    */
   public Long decr(String key) {
-    Jedis jedis = null;
     Long res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.decr(key);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -475,20 +330,11 @@ public class RedisUtil {
    * @return
    */
   public Long decrBy(String key,Long integer){
-    Jedis jedis = null;
     Long res = null;
-    try {
-      jedis = pool.getResource();
+    try (Jedis jedis = pool.getResource()){
       res = jedis.decrBy(key, integer);
-    } catch (Exception e) {
-      if (jedis != null) {
-    	    jedis.close();
-    	  }
-      e.printStackTrace();
-    } finally {
-      destroyResource(pool, jedis);
-    }
-    return res;
+      return res;
+    } 
   }
   
   /**
@@ -1780,5 +1626,30 @@ public class RedisUtil {
 		  jedis.close(); 
 		  pool.destroy();
       } 
+  }
+  public  void destroyAll(Jedis jedis) {
+	  if (jedis != null) {  
+		  jedis.close(); 
+		 
+	  } 
+	  if (pool != null) {
+		pool.destroy();
+	}
+  }
+  /**
+   * 返还到连接池
+   * 
+   * @param pool
+   * @param redis
+   */
+  public void close(Jedis jedis) {
+	  if (jedis != null) {  
+		  jedis.close(); 
+	  } 
+  }
+  public  void destroy() {
+	  if (pool != null) {
+			pool.destroy();
+		}
   }
 }
