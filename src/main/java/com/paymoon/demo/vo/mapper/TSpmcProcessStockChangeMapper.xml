@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paymoon.demo.vo.dao.TSpmcProcessStockChangeMapper">
+  <resultMap id="BaseResultMap" type="com.paymoon.demo.vo.TSpmcProcessStockChange">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="po_id" jdbcType="BIGINT" property="poId" />
+    <result column="poi_id" jdbcType="BIGINT" property="poiId" />
+    <result column="source_sku_id" jdbcType="BIGINT" property="sourceSkuId" />
+    <result column="target_sku_id" jdbcType="BIGINT" property="targetSkuId" />
+    <result column="source_batch_id" jdbcType="BIGINT" property="sourceBatchId" />
+    <result column="target_batch_id" jdbcType="BIGINT" property="targetBatchId" />
+    <result column="before_amount" jdbcType="BIGINT" property="beforeAmount" />
+    <result column="after_amount" jdbcType="BIGINT" property="afterAmount" />
+    <result column="total_amount_d_value" jdbcType="BIGINT" property="totalAmountDValue" />
+    <result column="before_count" jdbcType="BIGINT" property="beforeCount" />
+    <result column="after_count" jdbcType="BIGINT" property="afterCount" />
+    <result column="total_count_d_value" jdbcType="BIGINT" property="totalCountDValue" />
+    <result column="before_total_cost" jdbcType="BIGINT" property="beforeTotalCost" />
+    <result column="after_total_cost" jdbcType="BIGINT" property="afterTotalCost" />
+    <result column="total_cost_d_value" jdbcType="BIGINT" property="totalCostDValue" />
+    <result column="before_total_no_tax_cost" jdbcType="BIGINT" property="beforeTotalNoTaxCost" />
+    <result column="after_total_no_tax_cost" jdbcType="BIGINT" property="afterTotalNoTaxCost" />
+    <result column="total_no_tax_cost_d_value" jdbcType="BIGINT" property="totalNoTaxCostDValue" />
+    <result column="before_sku_cost" jdbcType="BIGINT" property="beforeSkuCost" />
+    <result column="after_sku_cost" jdbcType="BIGINT" property="afterSkuCost" />
+    <result column="sku_cost_d_value" jdbcType="BIGINT" property="skuCostDValue" />
+    <result column="before_sku_no_tax_cost" jdbcType="BIGINT" property="beforeSkuNoTaxCost" />
+    <result column="after_sku_no_tax_cost" jdbcType="BIGINT" property="afterSkuNoTaxCost" />
+    <result column="sku_no_tax_cost_d_value" jdbcType="BIGINT" property="skuNoTaxCostDValue" />
+    <result column="before_process_cost" jdbcType="BIGINT" property="beforeProcessCost" />
+    <result column="after_process_cost" jdbcType="BIGINT" property="afterProcessCost" />
+    <result column="process_cost_d_value" jdbcType="BIGINT" property="processCostDValue" />
+    <result column="datekey" jdbcType="INTEGER" property="datekey" />
+    <result column="c_t" jdbcType="INTEGER" property="cT" />
+    <result column="u_t" jdbcType="INTEGER" property="uT" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, po_id, poi_id, source_sku_id, target_sku_id, source_batch_id, target_batch_id, 
+    before_amount, after_amount, total_amount_d_value, before_count, after_count, total_count_d_value, 
+    before_total_cost, after_total_cost, total_cost_d_value, before_total_no_tax_cost, 
+    after_total_no_tax_cost, total_no_tax_cost_d_value, before_sku_cost, after_sku_cost, 
+    sku_cost_d_value, before_sku_no_tax_cost, after_sku_no_tax_cost, sku_no_tax_cost_d_value, 
+    before_process_cost, after_process_cost, process_cost_d_value, datekey, c_t, u_t, 
+    is_deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_spmc_process_stock_change
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_spmc_process_stock_change
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.paymoon.demo.vo.TSpmcProcessStockChange">
+    insert into t_spmc_process_stock_change (id, po_id, poi_id, 
+      source_sku_id, target_sku_id, source_batch_id, 
+      target_batch_id, before_amount, after_amount, 
+      total_amount_d_value, before_count, after_count, 
+      total_count_d_value, before_total_cost, after_total_cost, 
+      total_cost_d_value, before_total_no_tax_cost, after_total_no_tax_cost, 
+      total_no_tax_cost_d_value, before_sku_cost, after_sku_cost, 
+      sku_cost_d_value, before_sku_no_tax_cost, after_sku_no_tax_cost, 
+      sku_no_tax_cost_d_value, before_process_cost, after_process_cost, 
+      process_cost_d_value, datekey, c_t, 
+      u_t, is_deleted)
+    values (#{id,jdbcType=BIGINT}, #{poId,jdbcType=BIGINT}, #{poiId,jdbcType=BIGINT}, 
+      #{sourceSkuId,jdbcType=BIGINT}, #{targetSkuId,jdbcType=BIGINT}, #{sourceBatchId,jdbcType=BIGINT}, 
+      #{targetBatchId,jdbcType=BIGINT}, #{beforeAmount,jdbcType=BIGINT}, #{afterAmount,jdbcType=BIGINT}, 
+      #{totalAmountDValue,jdbcType=BIGINT}, #{beforeCount,jdbcType=BIGINT}, #{afterCount,jdbcType=BIGINT}, 
+      #{totalCountDValue,jdbcType=BIGINT}, #{beforeTotalCost,jdbcType=BIGINT}, #{afterTotalCost,jdbcType=BIGINT}, 
+      #{totalCostDValue,jdbcType=BIGINT}, #{beforeTotalNoTaxCost,jdbcType=BIGINT}, #{afterTotalNoTaxCost,jdbcType=BIGINT}, 
+      #{totalNoTaxCostDValue,jdbcType=BIGINT}, #{beforeSkuCost,jdbcType=BIGINT}, #{afterSkuCost,jdbcType=BIGINT}, 
+      #{skuCostDValue,jdbcType=BIGINT}, #{beforeSkuNoTaxCost,jdbcType=BIGINT}, #{afterSkuNoTaxCost,jdbcType=BIGINT}, 
+      #{skuNoTaxCostDValue,jdbcType=BIGINT}, #{beforeProcessCost,jdbcType=BIGINT}, #{afterProcessCost,jdbcType=BIGINT}, 
+      #{processCostDValue,jdbcType=BIGINT}, #{datekey,jdbcType=INTEGER}, #{cT,jdbcType=INTEGER}, 
+      #{uT,jdbcType=INTEGER}, #{isDeleted,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.paymoon.demo.vo.TSpmcProcessStockChange">
+    insert into t_spmc_process_stock_change
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="poId != null">
+        po_id,
+      </if>
+      <if test="poiId != null">
+        poi_id,
+      </if>
+      <if test="sourceSkuId != null">
+        source_sku_id,
+      </if>
+      <if test="targetSkuId != null">
+        target_sku_id,
+      </if>
+      <if test="sourceBatchId != null">
+        source_batch_id,
+      </if>
+      <if test="targetBatchId != null">
+        target_batch_id,
+      </if>
+      <if test="beforeAmount != null">
+        before_amount,
+      </if>
+      <if test="afterAmount != null">
+        after_amount,
+      </if>
+      <if test="totalAmountDValue != null">
+        total_amount_d_value,
+      </if>
+      <if test="beforeCount != null">
+        before_count,
+      </if>
+      <if test="afterCount != null">
+        after_count,
+      </if>
+      <if test="totalCountDValue != null">
+        total_count_d_value,
+      </if>
+      <if test="beforeTotalCost != null">
+        before_total_cost,
+      </if>
+      <if test="afterTotalCost != null">
+        after_total_cost,
+      </if>
+      <if test="totalCostDValue != null">
+        total_cost_d_value,
+      </if>
+      <if test="beforeTotalNoTaxCost != null">
+        before_total_no_tax_cost,
+      </if>
+      <if test="afterTotalNoTaxCost != null">
+        after_total_no_tax_cost,
+      </if>
+      <if test="totalNoTaxCostDValue != null">
+        total_no_tax_cost_d_value,
+      </if>
+      <if test="beforeSkuCost != null">
+        before_sku_cost,
+      </if>
+      <if test="afterSkuCost != null">
+        after_sku_cost,
+      </if>
+      <if test="skuCostDValue != null">
+        sku_cost_d_value,
+      </if>
+      <if test="beforeSkuNoTaxCost != null">
+        before_sku_no_tax_cost,
+      </if>
+      <if test="afterSkuNoTaxCost != null">
+        after_sku_no_tax_cost,
+      </if>
+      <if test="skuNoTaxCostDValue != null">
+        sku_no_tax_cost_d_value,
+      </if>
+      <if test="beforeProcessCost != null">
+        before_process_cost,
+      </if>
+      <if test="afterProcessCost != null">
+        after_process_cost,
+      </if>
+      <if test="processCostDValue != null">
+        process_cost_d_value,
+      </if>
+      <if test="datekey != null">
+        datekey,
+      </if>
+      <if test="cT != null">
+        c_t,
+      </if>
+      <if test="uT != null">
+        u_t,
+      </if>
+      <if test="isDeleted != null">
+        is_deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="poId != null">
+        #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="poiId != null">
+        #{poiId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSkuId != null">
+        #{sourceSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="targetSkuId != null">
+        #{targetSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceBatchId != null">
+        #{sourceBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="targetBatchId != null">
+        #{targetBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeAmount != null">
+        #{beforeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="afterAmount != null">
+        #{afterAmount,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmountDValue != null">
+        #{totalAmountDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeCount != null">
+        #{beforeCount,jdbcType=BIGINT},
+      </if>
+      <if test="afterCount != null">
+        #{afterCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalCountDValue != null">
+        #{totalCountDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeTotalCost != null">
+        #{beforeTotalCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterTotalCost != null">
+        #{afterTotalCost,jdbcType=BIGINT},
+      </if>
+      <if test="totalCostDValue != null">
+        #{totalCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeTotalNoTaxCost != null">
+        #{beforeTotalNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterTotalNoTaxCost != null">
+        #{afterTotalNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="totalNoTaxCostDValue != null">
+        #{totalNoTaxCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeSkuCost != null">
+        #{beforeSkuCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterSkuCost != null">
+        #{afterSkuCost,jdbcType=BIGINT},
+      </if>
+      <if test="skuCostDValue != null">
+        #{skuCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeSkuNoTaxCost != null">
+        #{beforeSkuNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterSkuNoTaxCost != null">
+        #{afterSkuNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="skuNoTaxCostDValue != null">
+        #{skuNoTaxCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeProcessCost != null">
+        #{beforeProcessCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterProcessCost != null">
+        #{afterProcessCost,jdbcType=BIGINT},
+      </if>
+      <if test="processCostDValue != null">
+        #{processCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="datekey != null">
+        #{datekey,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null">
+        #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="uT != null">
+        #{uT,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.paymoon.demo.vo.TSpmcProcessStockChange">
+    update t_spmc_process_stock_change
+    <set>
+      <if test="poId != null">
+        po_id = #{poId,jdbcType=BIGINT},
+      </if>
+      <if test="poiId != null">
+        poi_id = #{poiId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceSkuId != null">
+        source_sku_id = #{sourceSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="targetSkuId != null">
+        target_sku_id = #{targetSkuId,jdbcType=BIGINT},
+      </if>
+      <if test="sourceBatchId != null">
+        source_batch_id = #{sourceBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="targetBatchId != null">
+        target_batch_id = #{targetBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="beforeAmount != null">
+        before_amount = #{beforeAmount,jdbcType=BIGINT},
+      </if>
+      <if test="afterAmount != null">
+        after_amount = #{afterAmount,jdbcType=BIGINT},
+      </if>
+      <if test="totalAmountDValue != null">
+        total_amount_d_value = #{totalAmountDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeCount != null">
+        before_count = #{beforeCount,jdbcType=BIGINT},
+      </if>
+      <if test="afterCount != null">
+        after_count = #{afterCount,jdbcType=BIGINT},
+      </if>
+      <if test="totalCountDValue != null">
+        total_count_d_value = #{totalCountDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeTotalCost != null">
+        before_total_cost = #{beforeTotalCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterTotalCost != null">
+        after_total_cost = #{afterTotalCost,jdbcType=BIGINT},
+      </if>
+      <if test="totalCostDValue != null">
+        total_cost_d_value = #{totalCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeTotalNoTaxCost != null">
+        before_total_no_tax_cost = #{beforeTotalNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterTotalNoTaxCost != null">
+        after_total_no_tax_cost = #{afterTotalNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="totalNoTaxCostDValue != null">
+        total_no_tax_cost_d_value = #{totalNoTaxCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeSkuCost != null">
+        before_sku_cost = #{beforeSkuCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterSkuCost != null">
+        after_sku_cost = #{afterSkuCost,jdbcType=BIGINT},
+      </if>
+      <if test="skuCostDValue != null">
+        sku_cost_d_value = #{skuCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeSkuNoTaxCost != null">
+        before_sku_no_tax_cost = #{beforeSkuNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterSkuNoTaxCost != null">
+        after_sku_no_tax_cost = #{afterSkuNoTaxCost,jdbcType=BIGINT},
+      </if>
+      <if test="skuNoTaxCostDValue != null">
+        sku_no_tax_cost_d_value = #{skuNoTaxCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="beforeProcessCost != null">
+        before_process_cost = #{beforeProcessCost,jdbcType=BIGINT},
+      </if>
+      <if test="afterProcessCost != null">
+        after_process_cost = #{afterProcessCost,jdbcType=BIGINT},
+      </if>
+      <if test="processCostDValue != null">
+        process_cost_d_value = #{processCostDValue,jdbcType=BIGINT},
+      </if>
+      <if test="datekey != null">
+        datekey = #{datekey,jdbcType=INTEGER},
+      </if>
+      <if test="cT != null">
+        c_t = #{cT,jdbcType=INTEGER},
+      </if>
+      <if test="uT != null">
+        u_t = #{uT,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.paymoon.demo.vo.TSpmcProcessStockChange">
+    update t_spmc_process_stock_change
+    set po_id = #{poId,jdbcType=BIGINT},
+      poi_id = #{poiId,jdbcType=BIGINT},
+      source_sku_id = #{sourceSkuId,jdbcType=BIGINT},
+      target_sku_id = #{targetSkuId,jdbcType=BIGINT},
+      source_batch_id = #{sourceBatchId,jdbcType=BIGINT},
+      target_batch_id = #{targetBatchId,jdbcType=BIGINT},
+      before_amount = #{beforeAmount,jdbcType=BIGINT},
+      after_amount = #{afterAmount,jdbcType=BIGINT},
+      total_amount_d_value = #{totalAmountDValue,jdbcType=BIGINT},
+      before_count = #{beforeCount,jdbcType=BIGINT},
+      after_count = #{afterCount,jdbcType=BIGINT},
+      total_count_d_value = #{totalCountDValue,jdbcType=BIGINT},
+      before_total_cost = #{beforeTotalCost,jdbcType=BIGINT},
+      after_total_cost = #{afterTotalCost,jdbcType=BIGINT},
+      total_cost_d_value = #{totalCostDValue,jdbcType=BIGINT},
+      before_total_no_tax_cost = #{beforeTotalNoTaxCost,jdbcType=BIGINT},
+      after_total_no_tax_cost = #{afterTotalNoTaxCost,jdbcType=BIGINT},
+      total_no_tax_cost_d_value = #{totalNoTaxCostDValue,jdbcType=BIGINT},
+      before_sku_cost = #{beforeSkuCost,jdbcType=BIGINT},
+      after_sku_cost = #{afterSkuCost,jdbcType=BIGINT},
+      sku_cost_d_value = #{skuCostDValue,jdbcType=BIGINT},
+      before_sku_no_tax_cost = #{beforeSkuNoTaxCost,jdbcType=BIGINT},
+      after_sku_no_tax_cost = #{afterSkuNoTaxCost,jdbcType=BIGINT},
+      sku_no_tax_cost_d_value = #{skuNoTaxCostDValue,jdbcType=BIGINT},
+      before_process_cost = #{beforeProcessCost,jdbcType=BIGINT},
+      after_process_cost = #{afterProcessCost,jdbcType=BIGINT},
+      process_cost_d_value = #{processCostDValue,jdbcType=BIGINT},
+      datekey = #{datekey,jdbcType=INTEGER},
+      c_t = #{cT,jdbcType=INTEGER},
+      u_t = #{uT,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

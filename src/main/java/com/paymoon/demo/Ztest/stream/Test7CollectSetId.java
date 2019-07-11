@@ -1,22 +1,27 @@
 package com.paymoon.demo.Ztest.stream;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Test6 {
+public class Test7CollectSetId {
 	public static void main(String[] args) {
 
-		List<Person> list = new ArrayList();
-		list.add(new Person(1, "haha",3));
-		list.add(new Person(2, "rere",3));
-		list.add(new Person(13, "fefe",4));
+// Create a list.
+		final List<Person> customers = Arrays.asList(
+				new Person(1, "haha",3),
+				new Person(2, "rere",3),
+				new Person(13, "fefe",4)
+		);
 
+		// Turn into a list of Ids.
+		final List<Integer> ids = customers.stream()
+				.map(Person::getId)
+				.collect(Collectors.toList());
 
+		System.out.println("Ids = " + ids);
 
-		double total = list.stream().collect(Collectors.summingDouble(Person::getId));
-
-		System.out.println(total);
 	}
 
 }
