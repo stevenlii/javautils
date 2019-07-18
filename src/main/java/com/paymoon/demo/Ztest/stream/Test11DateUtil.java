@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class Test11 {
+public class Test11DateUtil {
     public static void main(String[] args) throws ParseException {
 //        System.out.println(getMorning(System.currentTimeMillis(),null));
         String sDate1="19980321";
