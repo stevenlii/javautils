@@ -6,6 +6,7 @@ package com.paymoon.demo.Ztest;
  */
 public class App {
 	public int num;
+	public int num2;
 	public AppNum appNum;
 	public int getNum() {
 		return num;
