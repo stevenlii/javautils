@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
  
-public class Test {
+public class Java8toMap {
 	public static void main(String[] args) {
  
 		List<Person> list = new ArrayList();

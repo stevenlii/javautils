@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Test3 {
+public class Java8summingDouble2 {
 	public static void main(String[] args) {
  
 		List<Person> list = new ArrayList();

@@ -3,7 +3,7 @@ package com.paymoon.demo.Ztest.stream;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Test2 {
+public class Java8summingDouble {
 	public static void main(String[] args) {
  
 		List<Person> list = new ArrayList();

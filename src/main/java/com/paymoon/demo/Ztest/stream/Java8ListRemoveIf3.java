@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Test9RemoveList {
+public class Java8ListRemoveIf3 {
     public static void main(String[] args) {
 
 // Create a list.

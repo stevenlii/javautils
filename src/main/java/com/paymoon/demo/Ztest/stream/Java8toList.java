@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Test7CollectSetId {
+public class Java8toList {
 	public static void main(String[] args) {
 
 // Create a list.
