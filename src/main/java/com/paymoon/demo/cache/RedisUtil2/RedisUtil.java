@@ -3,10 +3,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.experimental.theories.Theories;
 
 import com.paymoon.demo.Util.MyProp;
-import com.thoughtworks.xstream.core.util.Pool;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -1619,7 +1617,7 @@ public class RedisUtil {
    * 返还到连接池
    * 
    * @param pool
-   * @param redis
+   * @param jedis
    */
   public static void destroyResource(JedisPool pool, Jedis jedis) {
 	  if (jedis != null) {  
@@ -1639,8 +1637,7 @@ public class RedisUtil {
   /**
    * 返还到连接池
    * 
-   * @param pool
-   * @param redis
+   * @param jedis
    */
   public void close(Jedis jedis) {
 	  if (jedis != null) {  
