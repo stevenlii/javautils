@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+/**
+ * @author stevenlii
+ * @desc 处理java
+ *       8中针对List集合，进行聚合的代码。针对基本集合，进行聚合
+ */
 public class Java8groupingBy {
     public static void main(String[] args) {
         //3 apple, 2 banana, others 1
@@ -17,7 +22,6 @@ public class Java8groupingBy {
                         )
                 );
         System.out.println(result);
-        int i = 13;
         Map<String, List<String>> result2 =
                 items.stream().filter(t -> !t.equals("apple")).collect(
                         Collectors.groupingBy(
