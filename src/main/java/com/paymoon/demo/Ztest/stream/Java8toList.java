@@ -12,7 +12,8 @@ public class Java8toList {
 		final List<Person> customers = Arrays.asList(
 				new Person(1, "haha",3),
 				new Person(2, "rere",3),
-				new Person(13, "fefe",4)
+				new Person(13, "fefe",4),
+				new Person(1, "fefe",4)
 		);
 
 		// Turn into a list of Ids.

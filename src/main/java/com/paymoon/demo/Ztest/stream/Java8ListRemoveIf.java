@@ -20,8 +20,8 @@ public class Java8ListRemoveIf {
         // Turn into a list of Ids.
         String keyi = 1 + "_" + "haha_" + "11";
         System.out.println(keyi);
-        boolean ids = customers.removeIf(ttttt ->(ttttt.getId() + "_" + ttttt.getName() + "_" + ttttt.getAge()).equals(keyi));
-        System.out.println("Ids = " + ids);
+        boolean isRmOk = customers.removeIf(t ->(t.getId() + "_" + t.getName() + "_" + t.getAge()).equals(keyi));
+        System.out.println("isRmOk = " + isRmOk);
         customers.add(p4);
         System.out.println(customers);
 
