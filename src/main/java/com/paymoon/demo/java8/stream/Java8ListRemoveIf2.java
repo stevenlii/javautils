@@ -1,4 +1,4 @@
-package com.paymoon.demo.Ztest.stream;
+package com.paymoon.demo.java8.stream;
 
 import javax.sound.midi.Soundbank;
 import java.sql.SQLOutput;
