@@ -15,10 +15,11 @@ public class Java8toNewList3 {
 				new Person(1, "haha",3),
 				new Person(2, "rere",3),
 				new Person(13, "fefe",4),
-				new Person(1, "fefe", 4));
+				new Person(1, "fefe", 4)
+				);
 
 		// Turn into a list of Ids.
-		final List<Person> ids = customers.stream().map(t -> {
+		List<Person> ids = customers.stream().map(t -> {
 			Person p2 = new Person();
 			BeanUtils.copyProperties(customers.get(0), p2);
 			p2.setId(t.getId() + 100);
