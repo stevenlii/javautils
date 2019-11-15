@@ -11,16 +11,16 @@ import org.apache.logging.log4j.Logger;
 public class Test {
 	private static final Logger logger = LogManager.getLogger(); 
 public static void main(String[] args) {
-	String msg = new String("abcdef");
-	msg = msg.substring(1);
-	Map<String, String> map1 = new HashMap<String, String>();
-	Map<String, String> map2 = new HashMap<String, String>();
-	map2.put("1", "2");
-	map1.putAll(map2);
+//	String msg = new String("abcdef");
+//	msg = msg.substring(1);
+//	Map<String, String> map1 = new HashMap<String, String>();
+//	Map<String, String> map2 = new HashMap<String, String>();
+//	map2.put("1", "2");
+//	map1.putAll(map2);
+//	
+//	System.out.println(map1.get("1"));
 	
-	System.out.println(map1.get("1"));
-	logger.info("{}" , msg);
-	logger.info(msg,new Test().getClazzName());
+	logger.info("{}" , addDay(new Date(),1));
 	
 }
 /**
@@ -36,5 +36,13 @@ public static String getClazzName() {
 	    }  
 	}.getClassName(); 
 	return clazzName3;
+}
+//明日此时的时间
+public static Integer addDay(Date date, int day) {
+	Integer intDate = (int) (date.getTime() / 1000L);
+	Integer result = 0;
+	int oneDay = 86400;
+	result = intDate + day * oneDay;
+	return result;
 }
 }
