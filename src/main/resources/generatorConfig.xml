@@ -14,9 +14,9 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.2.27:3307/price_center"
-                        userId="price_rw"
-                        password="5nbVQk1BnCFGjSg5">
+                        connectionURL="jdbc:mysql://url:3307/dbname"
+                        userId="username"
+                        password="pwd">
         </jdbcConnection>
         <!-- targetPackage:包名称(自定义)  targetProject：项目路径(自定义)   -->
         <!--定义model的包名称-->
