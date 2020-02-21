@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang.SerializationUtils;
 
@@ -27,7 +28,13 @@ public class TopicDeleted {
 		factory.setHost(hostname);
 		factory.setUsername(username);
 		factory.setPassword(password);
-		Connection connection = factory.newConnection();
+		Connection connection = null;
+		try {
+			connection = factory.newConnection();
+		} catch (TimeoutException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		Channel channel = connection.createChannel();
 //		channel.exchangeDeclare(exchangeName, "fanout");// 声明Exchange
 //
@@ -42,11 +49,16 @@ public class TopicDeleted {
 			System.out.println("delQ..."+QName);
 		}
 		
-		channel.close();  
+		try {
+			channel.close();
+		} catch (TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 	    connection.close();  
 	}
 	public void delQ(List<String> Qs)
-			throws IOException {
+			throws IOException, TimeoutException {
 		ConnectionFactory factory = new ConnectionFactory();
 		
 		// hostname of your rabbitmq server

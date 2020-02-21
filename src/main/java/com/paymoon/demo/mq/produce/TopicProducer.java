@@ -2,6 +2,7 @@ package com.paymoon.demo.mq.produce;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang.SerializationUtils;
 
@@ -25,14 +26,25 @@ public class TopicProducer {
 		factory.setHost(hostname);
 		factory.setUsername(username);
 		factory.setPassword(password);
-		Connection connection = factory.newConnection();
+		Connection connection = null;
+		try {
+			connection = factory.newConnection();
+		} catch (TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Channel channel = connection.createChannel();
 		channel.exchangeDeclare(exchangeName, "fanout");// 声明Exchange
 
 		channel.basicPublish(exchangeName, "", null,
 				SerializationUtils.serialize(object));
 		
-		channel.close();  
+		try {
+			channel.close();
+		} catch (TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
 	    connection.close();  
 	}
 

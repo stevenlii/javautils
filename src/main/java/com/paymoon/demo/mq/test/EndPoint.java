@@ -1,6 +1,7 @@
 package com.paymoon.demo.mq.test;
 import java.io.IOException;
- 
+import java.util.concurrent.TimeoutException;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -16,7 +17,7 @@ public abstract class EndPoint{
     protected Connection connection;
     protected String endPointName;
      
-    public EndPoint(String endpointName) throws IOException{
+    public EndPoint(String endpointName) throws IOException, TimeoutException{
          this.endPointName = endpointName;
          
          //Create a connection factory
@@ -42,7 +43,12 @@ public abstract class EndPoint{
      * @throws IOException
      */
      public void close() throws IOException{
-         this.channel.close();
+         try {
+			this.channel.close();
+		} catch (TimeoutException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
          this.connection.close();
      }
 }
