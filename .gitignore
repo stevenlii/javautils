@@ -1,7 +1,5 @@
 /target/
 /.classpath
-<<<<<<< HEAD
+/.settings/
 /bin/
-=======
 .idea/
->>>>>>> 627daedc83afd7f8e1849d10971bd65550a103b5
