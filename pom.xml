@@ -159,7 +159,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
-			<version>1.1.41</version>
+			<version>1.2.25</version>
 		</dependency>
 		<dependency>
 			<groupId>xstream</groupId>
@@ -182,7 +182,7 @@
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
-			<version>3.4.2</version>
+			<version>4.8.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
