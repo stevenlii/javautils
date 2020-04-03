@@ -1,7 +1,7 @@
 package com.paymoon.demo.vo;
 
 public class Person {
-
+private Long id;
 private String name;
 private String age;
 private String gender;
@@ -49,10 +49,33 @@ public String getEdu() {
 public void setEdu(String edu) {
 	this.edu = edu;
 }
+
+public Long getId() {
+	return id;
+}
+public void setId(Long id) {
+	this.id = id;
+}
+
 @Override
 public String toString() {
-	return "Person [name=" + name + ", age=" + age + ", gender=" + gender
-			+ ", height=" + height + ", edu=" + edu + "]";
+	return "Person [id=" + id + ", name=" + name + ", age=" + age + ", gender=" + gender + ", height=" + height
+			+ ", edu=" + edu + "]";
 }
+@Override
+public int hashCode() {
+	return Long.hashCode(id.longValue());
+}
+@Override
+public boolean equals(Object obj) {
+	if (obj instanceof Person) {
+		Person o = (Person)obj;
+//		boolean isNameEq = this.name.equals(o.getName());
+		boolean isIdEq = this.id.longValue() == o.getId();
+		return isIdEq;
+	}
+	return false;
+}
+
 
 }
