@@ -2,7 +2,8 @@ package com.paymoon.demo.mq.test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
- 
+import java.util.concurrent.TimeoutException;
+
 import org.apache.commons.lang.SerializationUtils;
  
 import com.rabbitmq.client.AMQP.BasicProperties;
@@ -18,7 +19,7 @@ import com.rabbitmq.client.ShutdownSignalException;
  */
 public class QueueConsumer extends EndPoint implements Runnable, Consumer{
      
-    public QueueConsumer(String endPointName) throws IOException{
+    public QueueConsumer(String endPointName) throws IOException, TimeoutException{
         super(endPointName);       
     }
      
