@@ -1,4 +1,4 @@
-package com.paymoon.demo.threadpool.byhand;
+package com.paymoon.demo.threadpool.productconsumer;
 
 import java.util.Random;
 
