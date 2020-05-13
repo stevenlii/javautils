@@ -22,6 +22,7 @@ public class Java8toMap {
 		// Java8 Collectors.toMap的坑 - 八行书 - CSDN博客
 		// https://blog.csdn.net/u013805360/article/details/82686009
 		Map<Integer, String> map = list.stream().collect(Collectors.toMap(Person::getId, Person::getName, (a, b) -> b));
+		Map<String, String> map2 = list.stream().collect(Collectors.toMap(t -> t.getId()+""+t.getAge(), t -> t.getId()+"", (a, b) -> b));
 
 		System.out.println(map);
 		System.out.println(getTimesmorning(new Date()));
