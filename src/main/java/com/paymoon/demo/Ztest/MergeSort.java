@@ -4,70 +4,75 @@ class MergeSort {
 	// Merges two subarrays of arr[]. 
 	// First subarray is arr[l..m] 
 	// Second subarray is arr[m+1..r] 
-	void merge(int arr[], int l, int m, int r) 
+	void merge(int arr[], int left, int middle, int right) 
 	{ 
 		// Find sizes of two subarrays to be merged 
-		int n1 = m - l + 1; 
-		int n2 = r - m; 
+		int leftArrayLength = middle - left + 1; 
+		int rightArrayLength = right - middle; 
 
 		/* Create temp arrays */
-		int L[] = new int[n1]; 
-		int R[] = new int[n2]; 
+		int leftTempArray[] = new int[leftArrayLength]; 
+		int rightTempArray[] = new int[rightArrayLength]; 
 
 		/*Copy data to temp arrays*/
-		for (int i = 0; i < n1; ++i) 
-			L[i] = arr[l + i]; 
-		for (int j = 0; j < n2; ++j) 
-			R[j] = arr[m + 1 + j]; 
+		for (int i = 0; i < leftArrayLength; ++i) {
+			int arrIndex = left + i;
+			leftTempArray[i] = arr[arrIndex]; 
+		}
+		for (int j = 0; j < rightArrayLength; ++j) {
+			int arrIndex = middle + 1 + j;
+			rightTempArray[j] = arr[arrIndex]; 
+		}
 
 		/* Merge the temp arrays */
 
 		// Initial indexes of first and second subarrays 
-		int i = 0, j = 0; 
+		int leftSubArrayIndex = 0;
+		int rightSubArrayIndex = 0; 
 
 		// Initial index of merged subarry array 
-		int k = l; 
-		while (i < n1 && j < n2) { 
-			if (L[i] <= R[j]) { 
-				arr[k] = L[i]; 
-				i++; 
+		int mergedArrayIndex = left; 
+		while (leftSubArrayIndex < leftArrayLength && rightSubArrayIndex < rightArrayLength) { 
+			if (leftTempArray[leftSubArrayIndex] <= rightTempArray[rightSubArrayIndex]) { 
+				arr[mergedArrayIndex] = leftTempArray[leftSubArrayIndex]; 
+				leftSubArrayIndex++; 
 			} 
 			else { 
-				arr[k] = R[j]; 
-				j++; 
+				arr[mergedArrayIndex] = rightTempArray[rightSubArrayIndex]; 
+				rightSubArrayIndex++; 
 			} 
-			k++; 
+			mergedArrayIndex++; 
 		} 
 
-		/* Copy remaining elements of L[] if any */
-		while (i < n1) { 
-			arr[k] = L[i]; 
-			i++; 
-			k++; 
+		/* Copy remaining elements of leftTempArray[] if any */
+		while (leftSubArrayIndex < leftArrayLength) { 
+			arr[mergedArrayIndex] = leftTempArray[leftSubArrayIndex]; 
+			leftSubArrayIndex++; 
+			mergedArrayIndex++; 
 		} 
 
-		/* Copy remaining elements of R[] if any */
-		while (j < n2) { 
-			arr[k] = R[j]; 
-			j++; 
-			k++; 
+		/* Copy remaining elements of rightTempArray[] if any */
+		while (rightSubArrayIndex < rightArrayLength) { 
+			arr[mergedArrayIndex] = rightTempArray[rightSubArrayIndex]; 
+			rightSubArrayIndex++; 
+			mergedArrayIndex++; 
 		} 
 	} 
 
 	// Main function that sorts arr[l..r] using 
 	// merge() 
-	void sort(int arr[], int l, int r) 
+	void sort(int arr[], int left, int right) 
 	{ 
-		if (l < r) { 
+		if (left < right) { 
 			// Find the middle point 
-			int m = (l + r) / 2; 
+			int m = (left + right) / 2; 
 
 			// Sort first and second halves 
-			sort(arr, l, m); 
-			sort(arr, m + 1, r); 
+			sort(arr, left, m); 
+			sort(arr, m + 1, right); 
 
 			// Merge the sorted halves 
-			merge(arr, l, m, r); 
+			merge(arr, left, m, right); 
 		} 
 	} 
 
