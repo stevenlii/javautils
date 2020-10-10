@@ -21,7 +21,7 @@ public class Java8toNewList {
 			System.out.println(string);
 		});
 //运行结果：
-//stream().map()处理之后：1
+//stream().map()处理之后：1 
 //stream().map()处理之后：2
 //stream().map()处理之后：3}
 
