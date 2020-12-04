@@ -1,11 +1,13 @@
 package com.paymoon.demo.java8.stream;
 
+import java.math.BigDecimal;
+
 public class Person {
 
 	private Integer id;
 	private String name;
 	private int age;
-
+	private BigDecimal money;
 	public Person() {
 	}
 
@@ -18,6 +20,12 @@ public class Person {
 		this.id = id;
 		this.name = name;
 		this.age = age;
+	}
+	public Person(Integer id, String name, int age,BigDecimal money) {
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.money = money;
 	}
 
 	public Integer getId() {
@@ -45,6 +53,14 @@ public class Person {
 	}
 
 	
+
+	public BigDecimal getMoney() {
+		return money;
+	}
+
+	public void setMoney(BigDecimal money) {
+		this.money = money;
+	}
 
 	@Override
 	public int hashCode() {
@@ -83,6 +99,16 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person{" + "id=" + id + ", name='" + name + '\'' + ", age=" + age + '}';
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"id\":\"");
+		builder.append(id);
+		builder.append("\", \"name\":\"");
+		builder.append(name);
+		builder.append("\", \"age\":\"");
+		builder.append(age);
+		builder.append("\", \"money\":\"");
+		builder.append(money);
+		builder.append("\"}\n");
+		return builder.toString();
 	}
 }
