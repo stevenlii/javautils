@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 /**
  * 
  * @author stevenlii
- *@desc 使用 Java8的 stream对list数据去重，使用filter()过滤列表
-https://blog.csdn.net/ianly123/article/details/82658622
+ * Java8 使用 stream().sorted()对List集合进行排序 - 代码猫 - 博客园
+https://www.cnblogs.com/codecat/p/10873757.html
  */
 public class Java8ListComparingSort {
     public static void main(String[] args) {
