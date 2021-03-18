@@ -1,7 +1,7 @@
 package com.paymoon.demo.sort;
 
 /**
- * 插入排序
+ * 插入排序、折半插入排序
  *
  */
 public class InsertionSort {
@@ -25,8 +25,9 @@ public class InsertionSort {
 		printArray(arr);
 
 		// 排序
-//        insertionSort(arr);
-		insertion_sort(arr);
+//		insertion_sort(arr);
+		// 折半排序
+		binaryInsertSort(arr);
 		System.out.println("升序排序后：");
 
 		// 排序后：
@@ -39,21 +40,49 @@ public class InsertionSort {
 	 * @param arr
 	 * @return
 	 */
-	private static int[] insertion_sort(int arr[]) {
-		int i, j, key;
+	private static void insertion_sort(int arr[]) {
+		int i, j, currentIndex;
 		int len = arr.length;
 		for (i = 1; i != len; ++i) {
-			key = arr[i];
+			currentIndex = arr[i];
 			j = i - 1;
-			while ((j >= 0) && (arr[j] > key)) {
+			while ((j >= 0) && (arr[j] > currentIndex)) {
 				arr[j + 1] = arr[j];
 				j--;
 			}
-			arr[j + 1] = key;
+			arr[j + 1] = currentIndex;
 		}
-		return arr;
 	}
 
+	private static void binaryInsertSort(int array[]) {
+		for (int i = 1; i < array.length; i++) {
+			int currentIndex = array[i];
+
+			int low = 0;
+
+			int high = i - 1;
+			//while 这段作用就是找到临界替换的下标了，low代表的值，正好刚刚大于i代表的值。从i到low，就是要换的数的下标
+			//如： 1[0] 3[1] 5[2] 9[3] 13[4] 8[5]，当currentIndex=8时，下标[5]，low是下标[3],即9。high是下标[2],即5
+			while (low <= high) {
+				int mid = (low + high) / 2;
+
+				if (currentIndex < array[mid]) {
+					high = mid - 1;
+				} else {
+					low = mid + 1;
+				}
+			}
+
+			for (int j = i; j >= low + 1; j--) {
+				array[j] = array[j - 1];
+			}
+
+			array[low] = currentIndex;
+
+		}
+	}
+
+	
 	public static void printArray(int[] arr) {
 		System.out.print("[");
 		for (int x = 0; x < arr.length; x++) {
