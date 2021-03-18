@@ -37,6 +37,7 @@ public class InsertionSort {
 
 	/**
 	 * https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F#cite_note-1
+	 *  向有序序列中插入元素，那么插入位置可以不断地平分有序序列，并把待插入的元素的关键字与平分有序序列的关键字比较，以确定下一步要平分的子序列，直到找到合适的插入位置位置。
 	 * @param arr
 	 * @return
 	 */
@@ -54,6 +55,12 @@ public class InsertionSort {
 		}
 	}
 
+	/**
+	 * 折半插入排序算法是一种稳定的排序算法，比直接插入算法明显减少了关键字之间比较的次数，因此速度比直接插入排序算法快，但记录移动的次数没有变，所以折半插入排序算法的时间复杂度仍然为O(n^2)，与直接插入排序算法相同。
+	 * 折半插入排序
+	https://blog.csdn.net/jabezlee/article/details/7757612
+	 * @param array
+	 */
 	private static void binaryInsertSort(int array[]) {
 		for (int i = 1; i < array.length; i++) {
 			int currentIndex = array[i];
@@ -61,8 +68,9 @@ public class InsertionSort {
 			int low = 0;
 
 			int high = i - 1;
-			//while 这段作用就是找到临界替换的下标了，low代表的值，正好刚刚大于i代表的值。从i到low，就是要换的数的下标
-			//如： 1[0] 3[1] 5[2] 9[3] 13[4] 8[5]，当currentIndex=8时，下标[5]，low是下标[3],即9。high是下标[2],即5
+			// while 这段作用就是找到临界替换的下标了，low代表的值，正好刚刚大于i代表的值。从i到low，就是要换的数的下标
+			// 如： 1[0] 3[1] 5[2] 9[3] 13[4]
+			// 8[5]，当currentIndex=8时，下标[5]，low是下标[3],即9。high是下标[2],即5
 			while (low <= high) {
 				int mid = (low + high) / 2;
 
@@ -82,7 +90,6 @@ public class InsertionSort {
 		}
 	}
 
-	
 	public static void printArray(int[] arr) {
 		System.out.print("[");
 		for (int x = 0; x < arr.length; x++) {
