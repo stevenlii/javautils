@@ -1,4 +1,4 @@
-package com.paymoon.demo.Ztest;
+package com.paymoon.demo.sort;
 /* Java program for Merge Sort */
 class MergeSort { 
 	// Merges two subarrays of arr[]. 

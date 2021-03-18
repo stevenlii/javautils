@@ -1,4 +1,4 @@
-package com.paymoon.demo.Ztest;
+package com.paymoon.demo.sort;
 
 class QuickSort {
 	/*
