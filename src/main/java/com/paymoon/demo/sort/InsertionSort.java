@@ -4,7 +4,7 @@ package com.paymoon.demo.sort;
  * 插入排序、折半插入排序
  *
  */
-public class InsertionSort {
+public class InsertionSort  implements ISort {
 	public static void main(String[] args) {
 
 		int[] arr = { 90, 10, 11, 45, 34, 88 };
@@ -22,7 +22,7 @@ public class InsertionSort {
 
 		// 排序前；
 		System.out.println("原数组：");
-		printArray(arr);
+		ISort.printArray(arr);
 
 		// 排序
 //		insertion_sort(arr);
@@ -31,7 +31,7 @@ public class InsertionSort {
 		System.out.println("升序排序后：");
 
 		// 排序后：
-		printArray(arr);
+		ISort.printArray(arr);
 
 	}
 
@@ -90,14 +90,15 @@ public class InsertionSort {
 		}
 	}
 
-	public static void printArray(int[] arr) {
-		System.out.print("[");
-		for (int x = 0; x < arr.length; x++) {
-			if (x != arr.length - 1)
-				System.out.print(arr[x] + ", ");
-			else
-				System.out.println(arr[x] + "]");
 
-		}
+	@Override
+	public void sort(int[] arr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void whoIm() {
+		System.out.println("插入排序、折半插入排序");
 	}
 }
