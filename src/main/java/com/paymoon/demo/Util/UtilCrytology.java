@@ -8,8 +8,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.apache.commons.codec.binary.Base64;
 
 public class UtilCrytology {
 	private static String key;
@@ -53,7 +52,7 @@ public class UtilCrytology {
 	 */
 	protected static String encrypt(String data, String key) throws Exception {
 		byte[] bt = encrypt(data.getBytes(), key.getBytes());
-		String strs = new BASE64Encoder().encode(bt);
+		String strs = Base64.encodeBase64String(bt);
 		return strs;
 	}
 
@@ -71,8 +70,7 @@ public class UtilCrytology {
 			Exception {
 		if (data == null)
 			return null;
-		BASE64Decoder decoder = new BASE64Decoder();
-		byte[] buf = decoder.decodeBuffer(data);
+		byte[] buf = Base64.decodeBase64(data);
 		byte[] bt = decrypt(buf, key.getBytes());
 		return new String(bt);
 	}
