@@ -7,22 +7,24 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.paymoon.demo.java8.stream.Person;
+import com.paymoon.demo.vo.Person2;
+
 
 public class Test38 {
 	private static final Logger logger = LogManager.getLogger();
 
 	public static void main(String[] args) {
-		List<Person> personList  = new ArrayList<>();
-		Person p1 = new Person(1, "11lili", 11);
-		Person p2 = new Person(2, "22rrrr", 22);
-		Person p3 = new Person(3, "33sanan", 33);
-		Person p4 = new Person(4, "44sisisi", 44);
+		List<Person2> personList  = new ArrayList<>();
+		Person2 p1 = new Person2(10,"aaa");
+		Person2 p2 = new Person2(12,"bbb");
+		Person2 p3 = new Person2(11,"ccc");
+		Person2 p4 = new Person2(13,"ddd");
 		personList.add(p1);
 		personList.add(p2);
 		personList.add(p3);
 		personList.add(p4);
 		System.out.println(personList);
+		System.out.println("______________________________________");
 //		for (int i = 0; i < personList.size(); i++) {
 //			Person personItem = personList.get(i);
 //			if (personItem.getId() == 2) {
@@ -35,12 +37,10 @@ public class Test38 {
 //			}
 //		}
 //		System.out.println(personList);
-		for (Person personItem : personList) {
-			if (personItem.getId() == 2) {
-				personItem.setAge(66);
-			}
-			if (personItem.getId() == 4) {
-				personItem.setMoney(new BigDecimal(5511));
+		for (Person2 personItem : personList) {
+			if (personItem.getId() % 2 == 0) {
+			personItem.getP2().setFirstname("newp2"+personItem.getId());
+//				personItem.setP2(personItem.getP2());
 			}
 		}
 		System.out.println(personList);
@@ -60,6 +60,13 @@ public class Test38 {
 //		System.out.println(personList);
 //		System.out.println(personList2);
 		
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"\"}\n");
+		return builder.toString();
 	}
 	
 }

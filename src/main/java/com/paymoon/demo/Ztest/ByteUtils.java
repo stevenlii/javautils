@@ -109,7 +109,7 @@ public class ByteUtils {
             bytes[i] = (byte) (n & 0xff);
         }
         //byte[]-->string
-        result = new String(bytes, "GBK");
+        result = new String(bytes, "utf-8");
         return result;
     }
 
@@ -154,6 +154,30 @@ public class ByteUtils {
             sb.append(' ');
         }
         return sb.toString().trim();
+    }
+    /**
+     * 字符串转换成Nginx十六进制字符串
+     *
+     * @param String str 待转换的ASCII字符串
+     * @return String 每个Byte之间/x分隔，如: \x61\x6C\x6B]
+     */
+    public static String str2HexStrNginx(String str) {
+    	
+    	char[] chars = "0123456789ABCDEF".toCharArray();
+    	StringBuilder sb = new StringBuilder("\\x");
+    	byte[] bs = str.getBytes();
+    	int bit;
+    	
+    	for (int i = 0; i < bs.length; i++) {
+    		bit = (bs[i] & 0x0f0) >> 4;
+    	sb.append(chars[bit]);
+    	bit = bs[i] & 0x0f;
+    	sb.append(chars[bit]);
+    	if (i < bs.length -1) {
+    		sb.append("\\x");
+		}
+    	}
+    	return sb.toString().trim();
     }
 
    

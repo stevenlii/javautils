@@ -43,7 +43,8 @@ public class Java8CompletableFuture3 {
 		} catch (InterruptedException e) {
 		}
 		if (StringUtils.equals(name, "中国石油")) {
-			return "601857";
+//			return "601857";
+			return null;
 		}
 		if (StringUtils.equals(name, "美国石油")) {
 			return "88888";

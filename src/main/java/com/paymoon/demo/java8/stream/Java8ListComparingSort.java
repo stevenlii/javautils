@@ -31,6 +31,10 @@ public class Java8ListComparingSort {
 		 * descend 序
 		 */
 		persons = persons.stream().sorted(Comparator.comparing(Person::getAge).reversed()).collect(Collectors.toList());
+		/**
+		 * comparingInt
+		 */
+		persons = persons.stream().sorted(Comparator.comparingInt(Person::getAge).reversed()).collect(Collectors.toList());
 		System.out.println(persons);
     }
     

@@ -28,16 +28,16 @@ public class MonoZip3 {
 		Mono<String> empInteger = Mono.just("");
 		aaIntegerList.flatMap(aa -> {
 			return Mono.zip(Mono.just(aa), bbInteger, empInteger);
-		})
-		.forEach(t -> System.out.print(t + ","));
+		}).block();
 		
 		
 		
-		Mono<Tuple3<List<String>, String, String>> zipResult = Mono.zip(aaInteger, bbInteger, empInteger);
-		Tuple3<List<String>, String, String> merge = zipResult.block();
-
-		System.out.println("t.get1:" + merge.getT1());
-		System.out.println("t.get2:" + merge.getT2());
+		
+//		Mono<Tuple3<List<String>, String, String>> zipResult = Mono.zip(aaInteger, bbInteger, empInteger);
+//		Tuple3<List<String>, String, String> merge = zipResult.block();
+//
+//		System.out.println("t.get1:" + merge.getT1());
+//		System.out.println("t.get2:" + merge.getT2());
 
 	}
 }
