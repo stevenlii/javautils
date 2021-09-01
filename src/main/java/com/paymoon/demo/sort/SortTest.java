@@ -16,9 +16,10 @@ public class SortTest {
 		bubbleISort.whoIm();
 		bubbleISort.sort(arr);
 		System.out.println("升序排序后：");
-
+		System.out.println();
 		// 排序后：
 		ISort.printArray(arr);
+		
 	}
 	
 

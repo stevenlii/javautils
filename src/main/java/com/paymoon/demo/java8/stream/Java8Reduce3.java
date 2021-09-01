@@ -47,6 +47,7 @@ class BinaryOperatorImpl implements BinaryOperator<ArrayList<Integer>> {
 		ArrayList<Integer> result = new ArrayList<Integer>();
 //		result.addAll(item);
 		System.out.println("combiner-----acc : " + acc + ", item:" + item);
+		
 		return result;
 	}
 }
