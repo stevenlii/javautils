@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 同时从新浪和网易查询证券代码，需要返回所有结果，才下一步查询价格，查询价格也同时从新浪和网易查询，返回所有结果，才完成操作：
 https://www.liaoxuefeng.com/wiki/1252599548343744/1306581182447650
+anyOf()可以实现“任意个CompletableFuture只要一个成功”，allOf()可以实现“所有CompletableFuture都必须成功
  *
  */
 public class Java8CompletableFuture3 {
