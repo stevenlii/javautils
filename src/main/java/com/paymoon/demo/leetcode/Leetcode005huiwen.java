@@ -25,7 +25,7 @@ public class Leetcode005huiwen {
                 // 由 L 和 i 可以确定右边界，即 j - i = L 得(步长)
 //                int j = L + i;
                
-
+            	//小于3的，直接是true,大于3的，用之前计算的结果。这就是动态规划的核心
                 if (charArray[i] != charArray[j]) {
                     dp[i][j] = false;
                 } else {
@@ -35,8 +35,9 @@ public class Leetcode005huiwen {
                         dp[i][j] = dp[i + 1][j - 1];
                     }
                 }
-                System.out.println("L="+L+",i="+i+",j="+j+",len="+len+",dp[i][j]="+dp[i][j]);
+//                System.out.println("L="+L+",i="+i+",j="+j+",len="+len+",dp[i][j]="+dp[i][j]);
                 // 只要 dp[i][L] == true 成立，就表示子串 s[i..L] 是回文，此时记录回文长度和起始位置
+                
                 if (dp[i][j] && j - i + 1 > maxLen) {
                     maxLen = j - i + 1;
                     begin = i;
@@ -47,7 +48,7 @@ public class Leetcode005huiwen {
     }
     public static void main(String[] args) {
     	String huiwen = "sa11211";
-		System.out.println(new Leetcode005huiwen().longestPalindrome(huiwen));;
+		System.out.println(new Leetcode005huiwen().longestPalindrome(huiwen));
 	}
 }
 
