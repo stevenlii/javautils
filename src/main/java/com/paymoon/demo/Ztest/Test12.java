@@ -17,6 +17,7 @@ public class Test12 {
 			System.out.println(true);
 		}else {
 			System.out.println(false);
+			
 		}
 	}
 	

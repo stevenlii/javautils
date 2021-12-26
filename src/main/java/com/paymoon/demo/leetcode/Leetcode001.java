@@ -5,6 +5,10 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSON;
 
+/**
+ * 查表法
+ *
+ */
 class Leetcode001 {
     public static int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> map = new HashMap<>();
