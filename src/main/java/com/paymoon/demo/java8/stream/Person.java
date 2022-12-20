@@ -1,8 +1,9 @@
 package com.paymoon.demo.java8.stream;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Person {
+public class Person implements Serializable{
 
 	private Integer id;
 	private String name;
@@ -111,4 +112,5 @@ public class Person {
 		builder.append("\"}\n");
 		return builder.toString();
 	}
+
 }
