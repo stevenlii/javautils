@@ -25,6 +25,7 @@ public class Java8ListComparingSort2 {
 		 */
 		persons = persons.stream().sorted(Comparator.comparing(Person::getName).reversed()).collect(Collectors.toList());
 		System.out.println(persons);
+		System.out.println(1111);
 		/**
 		 * 想使用person -> person.getName()这种表达式的，就不能.reversed(),需要使用：, Collections.reverseOrder()
 		 */
